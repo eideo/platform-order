@@ -68,6 +68,15 @@ public class ConsumeOrderServiceImpl extends AbstractConsumeOrderService impleme
 	 */
 	@Override
 	public String create(BaseOrderBean baseOrderBean) throws OrderException {
+		/**
+		 * 1.检查订单是否为二次支付
+		 * 2.检查订单是否为二次提交
+		 * 3.检查订单业务有效性
+		 * 4.检查商户和合作机构有效性
+		 * 5.检查消费订单特殊性要求检查，如果没有可以为空
+		 * 6.检查消费订单特殊性要求检查，如果没有可以为空
+		 * 7.保存订单信息
+		 */
 		ConsumeOrderBean orderBean = null;
 		if(baseOrderBean instanceof ConsumeOrderBean){
 			orderBean = (ConsumeOrderBean)baseOrderBean;
@@ -100,8 +109,6 @@ public class ConsumeOrderServiceImpl extends AbstractConsumeOrderService impleme
 		checkOfMerchantAndCoopInsti(orderBean);
 		checkOfSpecialBusiness(orderBean);
 		checkOfBusiAcct(orderBean);
-		checkOfRepeatSubmit(orderBean);
-		
 	}
 
 	/**
